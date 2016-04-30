@@ -1,10 +1,14 @@
 'use strict';
 
 module.exports = function($stateProvider, $urlRouterProvider) {
-	$stateProvider
-		.state('home', {
-			url: '/',
-			templateUrl: '../../templates/index.html'
-			
-		})
-};
+	"ngInject";
+
+	$stateProvider.state('time', {
+		url: '/time',
+		templateUrl: '/src/templates/wall.html'
+	})
+	.state('home', {
+		url: '/',
+		templateUrl: '/src/templates/links.html'
+	})
+}

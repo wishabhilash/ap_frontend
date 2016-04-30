@@ -9,7 +9,8 @@ browserify   = require('browserify'),
 source       = require('vinyl-source-stream'),
 buffer       = require('vinyl-buffer'),
 rename       = require('gulp-rename'),
-sourcemaps	 = require('gulp-sourcemaps');
+sourcemaps	 = require('gulp-sourcemaps')
+ngAnnotate	 = require('gulp-ng-annotate');
 
 
 gulp.task('server', function () {
@@ -35,6 +36,7 @@ gulp.task('scripts', ['server'], function(){
     	]
     }).bundle()
         .pipe(source('all.js'))
+        .pipe(ngAnnotate())
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
         // .pipe(uglify())

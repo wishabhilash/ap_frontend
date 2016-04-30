@@ -1,8 +1,7 @@
 'use strict';
 
-var module = 'poem.controllers';
+var module = 'poem.controller';
 
-angular.module(module, [])
-	.controller('poem.controller.wall', require('./wall'));
-	.config('poem.controller.routes', require('./routes'));
-
+angular.module(module, ['ui.router'])
+	.controller(module + '.wall', require('./wall'))
+	.config(require('./routes'));
