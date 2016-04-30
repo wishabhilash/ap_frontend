@@ -1,0 +1,44 @@
+{
+  "name": "ap_frontend",
+  "version": "1.0.0",
+  "description": "This is a website for writers and poets",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wishabhilash/ap_frontend.git"
+  },
+  "author": "Abhilash Nanda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wishabhilash/ap_frontend/issues"
+  },
+  "homepage": "https://github.com/wishabhilash/ap_frontend#readme",
+  "dependencies": {
+    "fs": "0.0.2",
+    "koa": "^1.2.0",
+    "koa-router": "^5.4.0",
+    "koa-static-folder": "^0.1.6"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-koa-service": "0.0.8",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^2.0.6",
+    "gulp-sourcemaps": "^2.0.0-alpha",
+    "gulp-uglify": "^1.5.3",
+    "koa-static-folder": "^0.1.6",
+    "ng-annotate": "^1.2.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "browserify": {
+    "transform": [
+      "debowerify"
+    ]
+  }
+}
