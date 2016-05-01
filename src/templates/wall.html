@@ -1,3 +1,23 @@
-<div>
-	This is working {{message}}
-</div>
+<md-content flex class="md-content-background">
+	<div layout layout-align="center">
+		<md-card flex-sm="100" flex-gt-sm="70" flex-xs="100">
+			<md-list>
+				<md-list-item class="md-2-line" ng-repeat="item in listContent" ng-click="null" ui-sref="read">
+					<div class="md-list-item-text" layout="row">
+						<div class="md-tile-left inset">
+							<img class="user-avatar" src="https://static.sched.org/a5/1912276/avatar.jpg.320x320px.jpg?b2f">
+						</div>
+						<div class="md-tile-content" layout="column">
+							<span>Find the rage</span>
+							<p>{{item.name}} <i>24th August, 2016</i></p>
+						</div>
+					</div>
+					<md-divider ng-if="!$last"></md-divider>
+				</md-list-item>
+			</md-list>
+			<md-button class="md-primary" aria-label="Load more">
+				Load more
+			</md-button>
+		</md-card>
+	</div>
+</md-content>

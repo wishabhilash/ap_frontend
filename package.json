@@ -26,6 +26,8 @@
     "browserify": "^13.0.0",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
     "gulp-koa-service": "0.0.8",
     "gulp-ng-annotate": "^2.0.0",
     "gulp-rename": "^1.2.2",

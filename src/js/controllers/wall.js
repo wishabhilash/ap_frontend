@@ -2,5 +2,54 @@
 
 module.exports = function ($scope) {
 	"ngInject";
-	$scope.message = 'It works!!!';
+	$scope.listContent = [
+		{
+			name: "Abhilash Nanda",
+			age: 24
+		},
+		{
+			name: "Abhilash Nanda",
+			age: 24
+		},
+		{
+			name: "Abhilash Nanda",
+			age: 24
+		},
+		{
+			name: "Abhilash Nanda",
+			age: 24
+		},
+		{
+			name: "Abhilash Nanda",
+			age: 24
+		},
+		{
+			name: "Abhilash Nanda",
+			age: 24
+		},
+		{
+			name: "Abhilash Nanda",
+			age: 24
+		},
+		{
+			name: "Abhilash Nanda",
+			age: 24
+		},
+		{
+			name: "Abhilash Nanda",
+			age: 24
+		},
+		{
+			name: "Abhilash Nanda",
+			age: 24
+		},
+		{
+			name: "Abhilash Nanda",
+			age: 24
+		},
+		{
+			name: "Abhilash Nanda",
+			age: 24
+		}
+	];
 }
