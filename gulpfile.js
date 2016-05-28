@@ -22,7 +22,7 @@ gulp.task('server', function () {
 gulp.task('styles', function(){
 	return sass([
 			'./bower_components/angular-material/angular-material.scss',
-			'./src/scss/custom.scss'
+			'./src/scss/**/*.scss'
 		], {sourcemap: true})
 		.on('error', sass.logError)
 		.pipe(concat('all.css'))
@@ -35,7 +35,7 @@ gulp.task('styles', function(){
 		})
 });
 
-gulp.task('scripts', ['server'], function(){
+gulp.task('scripts', function(){
     return browserify({
     	entries: './src/js/app.js',
     	debug: true
@@ -50,9 +50,20 @@ gulp.task('scripts', ['server'], function(){
         .pipe(gulp.dest("dist/js"));
 });
 
+gulp.task('images', function() {
+	return gulp.src("./bower_components/material-design-icons/**/*.svg")
+		.pipe(gulp.dest("dist/imgs"))
+});
+
+gulp.task('templates', function() {
+	return gulp.src("./src/templates/**/*.html")
+		.pipe(gulp.dest("dist/templates"))
+});
+
 gulp.task('watch', function() {
 	gulp.watch('./src/js/**/*.js', ['scripts']);
 	gulp.watch('./src/scss/**/*.scss', ['styles']);
+	gulp.watch('./src/templates/**/*.html', ['templates']);
 });
 
-gulp.task('default', ['watch','scripts', 'styles']);
+gulp.task('default', ['watch','scripts', 'styles', 'templates', 'server']);

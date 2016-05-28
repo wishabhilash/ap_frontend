@@ -14,12 +14,11 @@ var render = function(src) {
   });
 }
 
-router.get('/', function * () {
-	this.body = yield render(__dirname + "/src/templates/index.html");
+router.get('/*', function * () {
+	this.body = yield render(__dirname + "/dist/templates/index.html");
 });
 
 app.use(serve('./dist'));
-app.use(serve('./src'));
 app.use(router.routes());
 app.use(router.allowedMethods());
 

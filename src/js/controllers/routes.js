@@ -19,5 +19,11 @@ module.exports = function($stateProvider, $urlRouterProvider) {
 		url: '/create',
 		templateUrl: '/src/templates/create.html',
 		controller: 'poem.controller.create'
+	})
+
+	.state('bookmarks', {
+		url: '/bookmarks',
+		templateUrl: '/src/templates/bookmarks.html',
+		controller: 'poem.controller.bookmarks'
 	});
 }

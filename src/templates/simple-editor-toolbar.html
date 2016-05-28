@@ -1,0 +1,45 @@
+<section style="height: 500px" layout="column">
+	<md-card layout="column" ng-click="toggleEditorTools(false)">
+		<!-- Editor toolbar -->
+		<section layout="row" class="simple-editor-toolbar" ng-style='{
+			"left": editor.editorToolPosition.x + "px",
+			"top": editor.editorToolPosition.y + "px",
+		}'>
+			<md-button aria-label="description" ng-click="editor.makeBold()">
+				<md-icon md-svg-src="/dist/imgs/editor/svg/production/ic_format_bold_48px.svg"></md-icon>
+				<md-tooltip md-direction="top">Bold</md-tooltip>
+			</md-button>
+			<md-button aria-label="description" ng-click="editor.makeItalic()">
+				<md-icon md-svg-src="/dist/imgs/editor/svg/production/ic_format_italic_48px.svg"></md-icon>
+				<md-tooltip md-direction="top">Italic</md-tooltip>
+			</md-button>
+			
+			<md-button aria-label="description" ng-click="editor.alignLeft()">
+				<md-icon md-svg-src="/dist/imgs/editor/svg/production/ic_format_align_left_48px.svg"></md-icon>
+				<md-tooltip md-direction="top">Left</md-tooltip>
+			</md-button>
+			<md-button aria-label="description" ng-click="editor.alignCenter()">
+				<md-icon md-svg-src="/dist/imgs/editor/svg/production/ic_format_align_center_48px.svg"></md-icon>
+				<md-tooltip md-direction="top">Center</md-tooltip>
+			</md-button>
+			<md-button aria-label="description" ng-click="editor.alignRight()">
+				<md-icon md-svg-src="/dist/imgs/editor/svg/production/ic_format_align_right_48px.svg"></md-icon>
+				<md-tooltip md-direction="top">Right</md-tooltip>
+			</md-button>
+		</section>
+
+		<div>
+			<md-card-title class="simple-editor-heading">
+	        	<md-card-title-text>
+	        		<span class="md-headline" contentEditable="true">In-card mixed actions</span>
+	        	</md-card-title-text>
+	        </md-card-title>
+        </div>
+		<md-divider></md-divider>
+		<div>
+			<md-card-content class="simple-editor-content" ng-click="toggleToolbarOnTextSelect($event)" ng-keyup="toggleToolbarOnTextSelect($event)" layout-padding contentEditable="true">
+				<div><br/></div>
+			</md-card-content>
+		</div>
+	</md-card>
+</section>

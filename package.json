@@ -17,13 +17,13 @@
   },
   "homepage": "https://github.com/wishabhilash/ap_frontend#readme",
   "dependencies": {
-    "fs": "0.0.2",
     "koa": "^1.2.0",
     "koa-router": "^5.4.0",
     "koa-static-folder": "^0.1.6"
   },
   "devDependencies": {
     "browserify": "^13.0.0",
+    "browserify-shim": "^3.8.12",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
