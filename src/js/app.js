@@ -17,7 +17,9 @@ var app = angular.module('poem', [
 	'ngMaterial',
 	'ngMessages',
 	'poem.directives'
-]);
+]).run(function() {
+	// CHECK TOKEN REFRESH AND SESSION EXPIRE
+});
 
 app.config(
 	function($stateProvider, $urlRouterProvider, $locationProvider) {

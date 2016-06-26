@@ -61,9 +61,9 @@ gulp.task('templates', function() {
 });
 
 gulp.task('watch', function() {
+	gulp.watch('./src/templates/**/*.html', ['templates']);
 	gulp.watch('./src/js/**/*.js', ['scripts']);
 	gulp.watch('./src/scss/**/*.scss', ['styles']);
-	gulp.watch('./src/templates/**/*.html', ['templates']);
 });
 
 gulp.task('default', ['watch','scripts', 'styles', 'templates', 'server']);

@@ -1,0 +1,21 @@
+<section layout="column">
+	<md-card layout="column" ng-click="toggleEditorTools(false)">
+		<!-- Editor toolbar -->
+		<simple-editor-control></simple-editor-control>
+
+		<div class="simple-editor-heading">
+			<md-card-title>
+	        	<md-card-title-text>
+	        		<span class="md-headline" contentEditable="true">Title</span>
+	        	</md-card-title-text>
+	        </md-card-title>
+        </div>
+		<md-divider></md-divider>
+		
+		<div class="simple-editor-content">
+			<md-card-content simple-editor-content layout-padding contentEditable="true">
+				<div><br/></div>
+			</md-card-content>
+		</div>
+	</md-card>
+</section>

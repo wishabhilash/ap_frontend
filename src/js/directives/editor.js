@@ -1,28 +1,25 @@
 "use strict";
 
-module.exports = function() {
+let editorControl = function() {
 
 	let controller = function($scope, $document) {
 		"ngInject";
-		let editor = this;
+		let editorControl = this;
 		const TOOLBAR_DEFAULT_POS = {x: -99999, y: -99999};
-
-		$scope.toggleToolbarOnTextSelect = toggleToolbarOnTextSelect;
-		editor.makeBold = makeBold;
-		editor.makeItalic = makeItalic;
-		editor.alignLeft = alignLeft;
-		editor.alignRight = alignRight;
-		editor.alignCenter = alignCenter;
-		editor.showEditorTools = showEditorTools;
-		editor.editorToolPosition = {
+		
+		editorControl.makeBold = makeBold;
+		editorControl.makeItalic = makeItalic;
+		editorControl.alignLeft = alignLeft;
+		editorControl.alignRight = alignRight;
+		editorControl.alignCenter = alignCenter;
+		
+		editorControl.toggleToolbarOnTextSelect = toggleToolbarOnTextSelect;
+		editorControl.showEditorTools = showEditorTools;
+		editorControl.editorToolPosition = {
 			x: TOOLBAR_DEFAULT_POS.x,
 			y: TOOLBAR_DEFAULT_POS.y
 		};
 
-		
-		function save() {
-
-		}
 
 		function toggleToolbarOnTextSelect($event) {
 			var text = "";
@@ -32,9 +29,9 @@ module.exports = function() {
 				text = document.selection.createRange().text;
 			}
 			if(text.length) {
-				editor.showEditorTools(true);
+				editorControl.showEditorTools(true);
 			} else {
-				editor.showEditorTools(false);
+				editorControl.showEditorTools(false);
 			}
 		}
 
@@ -48,14 +45,14 @@ module.exports = function() {
 			} else {
 				coords = getSelectionCoords();
 			}
-			editor.editorToolPosition = {
+			editorControl.editorToolPosition = {
 				x: coords.x,
 				y: coords.y
 			}
 		}
 
 		function getToolbarWidth() {
-			return angular.element(document.querySelectorAll(".simple-editor-toolbar")[0])[0].clientWidth
+			return angular.element(document.querySelectorAll(".simple-editor-toolbar")[0])[0].clientWidth;
 		}
 
 		function getSelectionCoords() {
@@ -68,49 +65,9 @@ module.exports = function() {
 			};
 		}
 
-		// function _getSelectionCoords(win) {
-		// 	win = win || window;
-		// 	var doc = win.document;
-		// 	var sel = doc.selection, range, rects, rect;
-		// 	var x = 0, y = 0;
-		// 	if (sel) {
-		// 		if (sel.type != "Control") {
-		// 			range = sel.createRange();
-		// 			range.collapse(true);
-		// 			x = range.boundingLeft;
-		// 			y = range.boundingTop;
-		// 		}
-		// 	} else if (win.getSelection) {
-		// 		sel = win.getSelection();
-		// 		if (sel.rangeCount) {
-		// 			range = sel.getRangeAt(0).cloneRange();
-		// 			if (range.getClientRects) {
-		// 				range.collapse(true);
-		// 				rects = range.getClientRects();
-		// 				if (rects.length > 0) {
-		// 					rect = rects[0];
-		// 				}
-		// 				x = rect.left;
-		// 				y = rect.top;
-		// 			}
-		// 			if (x == 0 && y == 0) {
-		// 				var span = doc.createElement("span");
-		// 				if (span.getClientRects) {
-		// 					span.appendChild( doc.createTextNode("\u200b") );
-		// 					range.insertNode(span);
-		// 					rect = span.getClientRects()[0];
-		// 					x = rect.left;
-		// 					y = rect.top;
-		// 					var spanParent = span.parentNode;
-		// 					spanParent.removeChild(span);
-
-		// 					spanParent.normalize();
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// 	return { x: x, y: y };
-		// }
+		function save(a, b) {
+			console.log('...', a, b);
+		}
 
 		function makeBold() {
 			document.execCommand('bold', false, '');
@@ -148,8 +105,80 @@ module.exports = function() {
 	return {
 		restrict: 'E',
 		controller: controller,
-		controllerAs: 'editor',
-		templateUrl: "./dist/templates/simple-editor-toolbar.html"
+		controllerAs: 'editorControl',
+		templateUrl: "./dist/templates/editor/editorControl.html"
 	}
+}
+
+
+// let editorTitle = function() {
+// 	let controller = function($scope) {
+
+// 	}
+
+// 	let link = function(scope, event, element) {
+
+// 	}
+
+// 	return {
+// 		restrict: 'A',
+// 		controller: controller,
+// 		controllerAs: 'editorTitle',
+// 		link: link
+// 	}
+// }
+
+let editorContent = function() {
+	let controller = function($scope) {
+		"ngInject";
+		let editorContent = this;
+
+		editorContent.toggleToolbarOnTextSelect = toggleToolbarOnTextSelect;
+		
+		function toggleToolbarOnTextSelect() {
+			$scope.editorControl.toggleToolbarOnTextSelect();
+		}
+		
+	}
+
+	let link = function(scope, element, attrs) {
+		element.on('keyup', function($event) {
+			scope.$apply(function() {
+				scope.editorControl.toggleToolbarOnTextSelect();
+			})
+			
+		});
+
+		element.on('click', function($event) {
+			scope.$apply(function() {
+				scope.editorControl.toggleToolbarOnTextSelect();
+			})
+		});
+	}
+
+	return {
+		restrict: 'A',
+		link: link
+	}
+}
+
+let editor = function() {
+	let controller = function($scope) {
+		"ngInject";
+		
+	}
+
+	return {
+		restrict: 'E',
+		controller: controller,
+		controllerAs: 'editor',
+		templateUrl: "./dist/templates/editor/editor.html"
+	}
+}
+
+module.exports = {
+	editor: editor,
+	editorControl: editorControl,
+	editorContent: editorContent,
 }
 
