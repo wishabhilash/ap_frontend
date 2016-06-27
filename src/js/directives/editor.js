@@ -15,27 +15,34 @@ let editorControl = function() {
 		
 		editorControl.toggleToolbarOnTextSelect = toggleToolbarOnTextSelect;
 		editorControl.showEditorTools = showEditorTools;
+
+		this.editorControlOpenFlag = false;
 		editorControl.editorToolPosition = {
 			x: TOOLBAR_DEFAULT_POS.x,
 			y: TOOLBAR_DEFAULT_POS.y
 		};
 
-
-		function toggleToolbarOnTextSelect($event) {
+		function isTextSelected() {
 			var text = "";
 			if (window.getSelection) {
 				text = window.getSelection().toString();
 			} else if (document.selection && document.selection.type != "Control") {
 				text = document.selection.createRange().text;
 			}
-			if(text.length) {
-				editorControl.showEditorTools(true);
-			} else {
-				editorControl.showEditorTools(false);
+			return text.length;
+		}
+
+		function toggleToolbarOnTextSelect() {
+			let flag = false;
+			if (isTextSelected()) {
+				flag = true;
 			}
+			if (this.editorControlOpenFlag == flag) return;
+			showEditorTools(flag);
 		}
 
 		function showEditorTools(flag) {
+			
 			let coords = null;
 			if (!flag) {
 				coords = {
@@ -45,10 +52,12 @@ let editorControl = function() {
 			} else {
 				coords = getSelectionCoords();
 			}
-			editorControl.editorToolPosition = {
-				x: coords.x,
-				y: coords.y
-			}
+			$scope.$apply(function() {
+				editorControl.editorToolPosition = {
+					x: coords.x,
+					y: coords.y
+				}
+			});
 		}
 
 		function getToolbarWidth() {
@@ -133,26 +142,23 @@ let editorContent = function() {
 		"ngInject";
 		let editorContent = this;
 
-		editorContent.toggleToolbarOnTextSelect = toggleToolbarOnTextSelect;
 		
-		function toggleToolbarOnTextSelect() {
-			$scope.editorControl.toggleToolbarOnTextSelect();
-		}
 		
 	}
 
 	let link = function(scope, element, attrs) {
 		element.on('keyup', function($event) {
-			scope.$apply(function() {
-				scope.editorControl.toggleToolbarOnTextSelect();
-			})
-			
+			scope.editorControl.toggleToolbarOnTextSelect();
+		});
+
+		element.on('paste', function($event) {
+			$event.preventDefault();
+			let pastedData = $event.clipboardData.getData('text/plain');
+			document.execCommand('insertText', false, pastedData);
 		});
 
 		element.on('click', function($event) {
-			scope.$apply(function() {
-				scope.editorControl.toggleToolbarOnTextSelect();
-			})
+			scope.editorControl.toggleToolbarOnTextSelect();
 		});
 	}
 

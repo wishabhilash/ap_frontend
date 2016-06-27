@@ -11,7 +11,8 @@ buffer       = require('vinyl-buffer'),
 rename       = require('gulp-rename'),
 sourcemaps	 = require('gulp-sourcemaps'),
 ngAnnotate	 = require('gulp-ng-annotate'),
-sass	 	 = require('gulp-ruby-sass');
+sass	 	 = require('gulp-ruby-sass'),
+plumber	 	 = require('gulp-plumber');
 
 
 gulp.task('server', function () {
@@ -41,12 +42,14 @@ gulp.task('scripts', function(){
     	debug: true
     }).bundle()
         .pipe(source('all.js'))
+        .pipe(plumber())
         .pipe(ngAnnotate())
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
         // .pipe(uglify())
         // .pipe(rename('all.js'))
         .pipe(sourcemaps.write('.'))
+        .pipe(plumber.stop())
         .pipe(gulp.dest("dist/js"));
 });
 
