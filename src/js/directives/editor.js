@@ -38,6 +38,9 @@ let editorControl = function() {
 				flag = true;
 			}
 			if (this.editorControlOpenFlag == flag) return;
+
+			// Save last control open flag
+			this.editorControlOpenFlag = flag;
 			showEditorTools(flag);
 		}
 
