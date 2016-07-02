@@ -4,6 +4,7 @@ require('angular');
 require('angular-ui-router');
 require('./controllers');
 require('./directives');
+require('./services');
 
 require('angular-animate');
 require('angular-aria');
@@ -16,7 +17,8 @@ var app = angular.module('poem', [
 	'poem.controller',
 	'ngMaterial',
 	'ngMessages',
-	'poem.directives'
+	'poem.directives',
+	'poem.services'
 ]).run(function() {
 	// CHECK TOKEN REFRESH AND SESSION EXPIRE
 });

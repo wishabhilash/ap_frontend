@@ -141,17 +141,37 @@ let editorControl = function() {
 // }
 
 let editorContent = function() {
-	let controller = function($scope) {
+	let controller = function($scope, $timeout, contentService) {
 		"ngInject";
 		let editorContent = this;
+		editorContent.contentSaved = true;
+		editorContent.lastSavedContent = '';
+		editorContent.saveTimeoutPromise = null;
 
-		
-		
+		editorContent.saveContent = function(content) {
+			if (editorContent.lastSavedContent != content) {
+				editorContent.lastSavedContent = content;
+				editorContent.contentSaved = false;
+			}
+
+			if (!editorContent.contentSaved) {
+				$timeout.cancel(editorContent.saveTimeoutPromise);
+				editorContent.saveTimeoutPromise = $timeout(
+					contentService.save,
+					3000,
+					false,
+					content
+				);
+				editorContent.contentSaved = true;
+			}
+		}
 	}
 
 	let link = function(scope, element, attrs) {
 		element.on('keyup', function($event) {
 			scope.editorControl.toggleToolbarOnTextSelect();
+			let newContent = element.html();
+			scope.editorContent.saveContent(newContent);
 		});
 
 		element.on('paste', function($event) {
@@ -167,7 +187,9 @@ let editorContent = function() {
 
 	return {
 		restrict: 'A',
-		link: link
+		link: link,
+		controller: controller,
+		controllerAs: 'editorContent'
 	}
 }
 
