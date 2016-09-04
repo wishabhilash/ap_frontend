@@ -15,6 +15,7 @@ let editorControl = function() {
 		
 		editorControl.toggleToolbarOnTextSelect = toggleToolbarOnTextSelect;
 		editorControl.showEditorTools = showEditorTools;
+		editorControl.dialerDirecton = 'up';
 
 		this.editorControlOpenFlag = false;
 		editorControl.editorToolPosition = {
@@ -111,6 +112,8 @@ let editorControl = function() {
 		function makeHeader() {
 			
 		}
+
+
 
 	};
 

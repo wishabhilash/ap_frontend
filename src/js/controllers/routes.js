@@ -3,10 +3,23 @@
 module.exports = function($stateProvider, $urlRouterProvider) {
 	"ngInject";
 
-	$stateProvider.state('wall', {
+	$stateProvider
+	.state('wall', {
 		url: '/',
 		templateUrl: '/src/templates/wall.html',
-		controller: 'poem.controller.wall'
+		controller: 'poem.controller.wall',
+		resolve: {
+			authVerification: function($state) {
+				"ngInject";
+				$state.go('auth');
+			}
+		}
+	})
+
+	.state('auth', {
+		url: '/',
+		templateUrl: '/src/templates/auth.html',
+		controller: 'poem.controller.auth'
 	})
 
 	.state('read', {

@@ -24,3 +24,21 @@
 		<md-tooltip md-direction="top">Right</md-tooltip>
 	</md-button>
 </section>
+
+<md-fab-speed-dial md-direction="{{editorControl.dialerDirecton}}" class="md-fling md-fab-bottom-right">
+	<md-fab-trigger>
+		<md-button aria-label="menu" class="md-fab md-success">
+			<md-icon md-svg-src="/dist/imgs/navigation/svg/design/ic_menu_48px.svg"></md-icon>
+		</md-button>
+	</md-fab-trigger>
+	<md-fab-actions>
+		<md-button aria-label="Publish" class="md-fab md-raised md-mini md-primary">
+			<md-icon md-svg-src="/dist/imgs/editor/svg/production/ic_publish_48px.svg" aria-label="Publish"></md-icon>
+			<md-tooltip md-direction="left">Publish</md-tooltip>
+		</md-button>
+		<md-button aria-label="Delete" class="md-fab md-raised md-mini md-primary">
+			<md-icon md-svg-src="/dist/imgs/action/svg/design/ic_delete_48px.svg" aria-label="Delete"></md-icon>
+			<md-tooltip md-direction="left">Delete</md-tooltip>
+		</md-button>
+	</md-fab-actions>
+</md-fab-speed-dial>
