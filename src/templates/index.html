@@ -4,52 +4,8 @@
 	<title>AP</title>
 	<link rel="stylesheet" type="text/css" href="./dist/css/all.css">
 </head>
-<body ng-app="poem" layout="column" layout-fill>
-	<md-toolbar class="md-whiteframe-z2">
-		<div class="md-toolbar-tools">
-			<h3>
-				AP
-			</h3>
-		</div>
-	</md-toolbar>
-
-	<div layout-wrap flex layout>
-		<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" flex="20">
-			<md-toolbar class="md-tall">
-				<span flex></span>
-				<div layout="column" class="md-toolbar-tools-bottom inset">
-					<div>Firstname Lastname</div>
-					<div>email@domainname.com</div>
-				</div>
-			</md-toolbar>
-			<md-list>
-				<md-list-item ng-click="null" ui-sref="wall">
-					<md-item-content layout="row" layout-align="start center">
-						<div class="inset">Home</div>
-					</md-item-content>
-				</md-list-item>
-				<md-list-item ng-click="null" ui-sref="bookmarks">
-					<md-item-content layout="row" layout-align="start center">
-						<div class="inset">Bookmarks</div>
-					</md-item-content>
-				</md-list-item>
-				<md-list-item ng-click="null" ui-sref="wall">
-					<md-item-content layout="row" layout-align="start center">
-						<div class="inset">My Writes</div>
-					</md-item-content>
-				</md-list-item>
-				<md-list-item ng-click="null" ui-sref="wall">
-					<md-item-content layout="row" layout-align="start center">
-						<div class="inset">Account</div>
-					</md-item-content>
-				</md-list-item>
-			</md-list>
-		</md-sidenav>
-		<md-content layout-wrap flex-gt-sm="80" flex-sm="100" flex-xs="100" class="md-content-background height-100">
-		    <ui-view></ui-view>
-		</md-content>
-		
-	</div>
+<body ng-app="poem">
+	<div ui-view layout="column" layout-fill></div>
 	<script type="text/javascript" src="./dist/js/all.js"></script>
 </body>
 </html>

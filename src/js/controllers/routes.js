@@ -4,39 +4,41 @@ module.exports = function($stateProvider, $urlRouterProvider) {
 	"ngInject";
 
 	$stateProvider
-	.state('wall', {
+	.state('base', {
 		url: '/',
+		templateUrl: '/src/templates/base.html',
+		controller: 'poem.controller.base',
+		controllerAs: 'baseCtrl'
+	})
+	
+	.state('base.wall', {
+		url: 'wall',
 		templateUrl: '/src/templates/wall.html',
 		controller: 'poem.controller.wall',
-		resolve: {
-			authVerification: function($state) {
-				"ngInject";
-				$state.go('auth');
-			}
-		}
 	})
 
-	.state('auth', {
-		url: '/',
-		templateUrl: '/src/templates/auth.html',
-		controller: 'poem.controller.auth'
-	})
-
-	.state('read', {
+	.state('base.read', {
 		url: '/read',
 		templateUrl: '/src/templates/read.html',
 		controller: 'poem.controller.read'
 	})
 
-	.state('create', {
+	.state('base.create', {
 		url: '/create',
 		templateUrl: '/src/templates/create.html',
 		controller: 'poem.controller.create'
 	})
 
-	.state('bookmarks', {
+	.state('base.bookmarks', {
 		url: '/bookmarks',
 		templateUrl: '/src/templates/bookmarks.html',
 		controller: 'poem.controller.bookmarks'
+	})
+
+	.state('auth', {
+		url: '/auth',
+		templateUrl: '/src/templates/auth.html',
+		controller: 'poem.controller.auth',
+		controllerAs: 'authCtrl'
 	});
 }

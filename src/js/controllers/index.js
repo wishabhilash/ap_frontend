@@ -3,6 +3,7 @@
 var module = 'poem.controller';
 
 angular.module(module, ['ui.router'])
+	.controller(module + '.base', require('./base'))
 	.controller(module + '.auth', require('./auth'))
 	.controller(module + '.wall', require('./wall'))
 	.controller(module + '.read', require('./read'))

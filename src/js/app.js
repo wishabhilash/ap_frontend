@@ -1,6 +1,7 @@
 'use strict';
 
 require('angular');
+require('satellizer');
 require('angular-ui-router');
 require('./controllers');
 require('./directives');
@@ -14,6 +15,7 @@ require('angular-material');
 
 var app = angular.module('poem', [
 	'ui.router',
+	'satellizer',
 	'poem.controller',
 	'ngMaterial',
 	'ngMessages',
@@ -33,7 +35,8 @@ app.config(
 			enabled: true,
 			requireBase: false
 		}).hashPrefix('!');
-	});
+	}
+);
 
 app.config(function($mdThemingProvider) {
 	var customBlueMap = $mdThemingProvider.extendPalette(
@@ -52,4 +55,10 @@ app.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('input', 'default')
 	.primaryPalette('grey')
 
+});
+
+app.config(function($authProvider) {
+	$authProvider.facebook({
+		clientId: '1612280665736348'
+	})
 });
